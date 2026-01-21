@@ -142,7 +142,7 @@ class Lexer:
         # The characters that can initialize a string
         str_start_chars: str = '"'
         # The characters that can initialize a number
-        num_start_chars: str = '0123456789.'
+        num_start_chars: str = '0123456789'
         i = 0
         while i < len(chars):
             char = chars[i]
@@ -160,7 +160,11 @@ class Lexer:
             elif char == ")":
                 self.tokens.append(Token(TokenType.PAREN_CLOSE, ')', self.line))
                 i += 1
-            elif char in atom_start_chars:
+            # atoms can start with periods too but I'd have to refactor to
+            # properly add periods to atom start chars (because the number
+            # reading code depends on using atom_start_chars for detecting
+            # errors).
+            elif char in atom_start_chars or char == ".":
                 atom_token: Token
                 i, atom_token = self.read_atom(i,
                                                self.line,

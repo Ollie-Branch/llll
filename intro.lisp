@@ -109,5 +109,8 @@
   "Compute the mathematical dot product of two vectors."
   (apply #'+ (mapcar #'* a b)))
 
+;; This is added nonsense code to test cons-cell parsing
+(setq test (one . two))
+
 ;;; ==============================
 

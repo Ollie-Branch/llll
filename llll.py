@@ -74,8 +74,8 @@ class Lexer:
                  line_num: int,
                  str_termination_char: str,
                  chars: list[str]) -> tuple[int, Token]:
-        """ A string starts with a quote or single quote, we continue reading
-        until we find a duplicate quote or single quote. There should also be
+        """ A string starts with a double quote, we continue reading
+        until we find a duplicate double quote. There should also be
         look-ahead to determine escape characters so we can include quotes
         inside our string. Once we find a final quote matching our original
         quote character, we will terminate reading, return the index after the

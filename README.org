@@ -2,7 +2,9 @@
 A toy project that can tokenize lisp-like languages. While there are some bugs/missing features, this ~200-line implementation should be easy enough to understand for anyone looking into designing their first programming language (provided it's a lisp-like language). The reason I made this was so I could learn how to tokenize a lisp-like language. 
 
 ** Why is it limp?
-It's "limp" because it's not robust enough to handle any lisp-dialect in the wild (that I know of). For example, this lexer doesn't support cons cells, a feature of all the general-purpose lisps AFAIK (the "." syntax is erroneously tokenized as a number). Quoting a list or atom also creates some oddities in the token stream that you would have to account for when writing the AST or anything else (provided you don't modify the lexer to better support quoting). This lexer doesn't follow the common lisp spec, and is mostly just set up based on a first pass look at what I thought a lisp lexer would need, it will probably not be fit for purpose for a larger project without some additions and/or modifications.
+It's "limp" because it's not robust enough to handle any lisp-dialect in the wild (that I know of). This lexer doesn't follow the common lisp spec, and is mostly just set up based on a first pass look at what I thought a lisp lexer would need, it will probably not be fit for purpose for a larger project without some additions and/or modifications. This project is still missing quasi-quoting and hash-quoting.
+
+This originally didn't support cons cells or quoting, but that has been fixed.
 
 ** Usage
 In the below examples, replace $LISP_FILE with any lisp file you want to view the tokens of.
@@ -16,4 +18,4 @@ Windows (not tested on windows):
 If your python interpreter has a different name for the exe/binary you will obviously need to use that name instead of the ones provided here, the name of the python executable depends on platform and installation method (and on linux not every distro names the python binary the same).
 
 ** Credits
-Lisp example code for the lexer comes from norvig/paip-lisp from github (located in lisp/intro.lisp), which is also licensed under MIT as of 2025, I was originally testing it on my doom emacs config but I don't wanna publish that here so I used this lisp file instead.
+Lisp example code for the lexer comes from norvig/paip-lisp from github (located in lisp/intro.lisp), which is also licensed under MIT as of 2025, I was originally testing it on my doom emacs config but I don't wanna publish that here so I used this lisp file instead. I made some edits to the file as well to test things like cons cells (which were added as of [2026-01-21 Wed])

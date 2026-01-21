@@ -138,7 +138,7 @@ class Lexer:
         # The characters that can initialize an atom
         atom_start_chars: str = (
             'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-            "#+-*=/%<>!&|^~?:'`")
+            "#+-*=/%<>!&|^~?")
         # The characters that can initialize a string
         str_start_chars: str = '"'
         # The characters that can initialize a number
@@ -159,6 +159,10 @@ class Lexer:
                 i += 1
             elif char == ")":
                 self.tokens.append(Token(TokenType.PAREN_CLOSE, ')', self.line))
+                i += 1
+            # quoting support, separate the quote into its own atom
+            elif char == "'":
+                self.tokens.append(Token(TokenType.ATOM, "'", self.line))
                 i += 1
             # atoms can start with periods too but I'd have to refactor to
             # properly add periods to atom start chars (because the number
